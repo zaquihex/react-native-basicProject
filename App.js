@@ -1,37 +1,53 @@
 import React, { useState } from "react";
 
+/*
 import { DefaultTheme } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { createStackNavigator } from "@react-navigation/stack";*/
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { createStackNavigator } from "@react-navigation/stack";
 
 import { StyleSheet, Image, View, Text } from "react-native";
-import HomePage from './components/HomePage';
+import HomePageNavigator from './Navigation/HomePageNavigator';
+import Layout from './components/Layout';
+import FormNavigator from './Navigation/FormNavigator';
+
+const Example1 = () => (
+    <Layout>
+        <Text>Example1</Text>
+    </Layout>
+);
+const Example2 = () => (
+    <Layout>
+        <Text>Example2</Text>
+    </Layout>
+);
 
 export default function App() {
     const [infoApp, setInfoApp] = useState({});
     const AppContext = React.createContext();
 
-  const Stack = createStackNavigator();
+
   const Tab = createBottomTabNavigator();
 
+    const StackNavigator = () => (
+        <Tab.Navigator>
+            <Tab.Screen
+                name="HomePage"
+                component={HomePageNavigator}
+            />
+            <Tab.Screen
+                name="Form"
+                component={FormNavigator}
+            />
+        </Tab.Navigator>
+    );
+
   return (
-      <AppContext.Provider value={{ infoApp, setInfoApp }}>
-      <View style={styles.container}>
-          <Image style={styles.imageBackground} source={require("./assets/background.jpg")}></Image>
-          <HomePage />
-          {/*<NavigationContainer theme={DefaultTheme}>
-              <Stack.Navigator>
-                  <Stack.Screen
-                      name="Welcome"
-                      component={HomePage}
-                      options={{ headerShown: false }}
-                  />
-              </Stack.Navigator>
-          </NavigationContainer>*/}
-      </View>
-</AppContext.Provider>
+      <NavigationContainer>
+          <StackNavigator />
+      </NavigationContainer>
+
   );
 }
 
@@ -54,6 +70,21 @@ const styles = StyleSheet.create({
   },
 });
 /*
+<AppContext.Provider value={{ infoApp, setInfoApp }}>
+      <View style={styles.container}>
+          <Image style={styles.imageBackground} source={require("./assets/background.jpg")}></Image>
+          <HomePage />
+          <NavigationContainer theme={DefaultTheme}>
+              <Stack.Navigator>
+                  <Stack.Screen
+                      name="Welcome"
+                      component={HomePage}
+                      options={{ headerShown: false }}
+                  />
+              </Stack.Navigator>
+          </NavigationContainer>
+      </View>
+</AppContext.Provider>
 <NavigationContainer theme={DefaultTheme}>
             <HomePage />
               <Tab.Navigator>
