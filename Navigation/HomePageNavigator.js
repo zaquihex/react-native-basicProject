@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
-import HomePageComponent from '../components/HomePageComponent';
+import HomePageComponent from '../Screens/HomePageScreen';
 
 const Stack = createStackNavigator();
 

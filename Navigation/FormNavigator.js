@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from "@react-navigation/stack";
-import FormComponent from '../components/FormComponent';
+import FormComponent from '../Screens/FormScreen';
 
 const Stack = createStackNavigator();
 

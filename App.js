@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
-/*
-import { DefaultTheme } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { createStackNavigator } from "@react-navigation/stack";*/
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { StyleSheet, Image, View, Text } from "react-native";
 import HomePageNavigator from './Navigation/HomePageNavigator';
-import Layout from './components/Layout';
+import Layout from './Components/Layout';
 import FormNavigator from './Navigation/FormNavigator';
+import {backgroundImage} from './config/styles';
 
 const Example1 = () => (
     <Layout>
@@ -35,10 +33,21 @@ export default function App() {
             <Tab.Screen
                 name="HomePage"
                 component={HomePageNavigator}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="home" color={color} size={size} />
+                    ),
+                }}
             />
+
             <Tab.Screen
                 name="Form"
                 component={FormNavigator}
+                options={{
+                    tabBarIcon: ({ color, size }) => (
+                        <MaterialCommunityIcons name="text" color={color} size={size} />
+                    ),
+                }}
             />
         </Tab.Navigator>
     );
@@ -63,11 +72,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  imageBackground: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute'
-  },
+  imageBackground: backgroundImage,
 });
 /*
 <AppContext.Provider value={{ infoApp, setInfoApp }}>
